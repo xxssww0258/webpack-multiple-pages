@@ -1,5 +1,6 @@
 var path = require('path')
 var utils = require('./utils')
+var webpack = require('webpack')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 
@@ -50,7 +51,15 @@ module.exports = {
         name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
       }
     }]
-  }
+  },
+  // plugins: [
+  //   new webpack.ProvidePlugin({//全局变量插件
+  //     mui: '@/lib/mui/mui.js',
+  //   })
+  // ],
+  // externals: {
+  //     mui: "@/lib/mui/mui.js"
+  // },
 }
 
 if (config.multiplePage.isMultiple) {
