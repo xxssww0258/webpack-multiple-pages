@@ -45,13 +45,7 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 *	添加common.js存放公共 js(vendor.js是存放长期不修改的)
 *	默认新增依赖less,sass,stylus,postcss,html,autoprefixer,imports,exports,expose,json
 *	还有webpack-spritesmith，但是没有做处理，暂时不可用，如果以后想要兼容ie7才会进行修改
-
 *	还有一堆我忘记了的修改。。。
-
-
-
-
-
 
 ## 已知BUG
 > 某些情况下导入字体路径会错误(需手动修改，进入build后的css文件搜索后缀如ttf)
@@ -60,10 +54,7 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 
 ## 注意
 * 代码内含大量冗余无用的注释，自行判断
-
-* css-loader 不能类似解析 url(data:xxxx,svg())的css语法
-
+* css-loader 不能类似解析url('data:image/svg+xml;charset=utf-8,<svg...')的css语法,改为url('data:image/svg+xml;base64,PHN2Zw...')
 * export-loader N个月没更新,不支持export和module.exports选择，而import和module.exports混用会报错
 所以我fork了个export-loader,添加了2个参数 详情<https://https://github.com/xxssww0258/exports-loader/>
-
 * 估计还有许多loader存在问题
