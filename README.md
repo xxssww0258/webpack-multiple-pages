@@ -63,11 +63,7 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 
 * css-loader 不能类似解析 url(data:xxxx,svg())的css语法
 
-* export-loader N个月没更新,不支持webpack2.0,需要手动修改loader,默认输出module.exports,2个以上输出export
-
-`if is es2015 module   
-__webpack_exports__["default"] =//..  
-else  
-module.exports = //..`
+* export-loader N个月没更新,不支持export和module.exports选择，而import和module.exports混用会报错
+所以我fork了个export-loader,添加了2个参数 详情<https://https://github.com/xxssww0258/exports-loader/>
 
 * 估计还有许多loader存在问题
