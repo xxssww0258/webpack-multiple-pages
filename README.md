@@ -27,6 +27,7 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 
 *	识别.vue文件
 *	babel转es5
+*	img,js,css统一加上hash
 *	小于10k图标或文字转base64(兼容性为ie8 32Kkb以下)
 *	对.vue执行less,sass,postcss,stylus,autoprefixer等处理
 *	css合并压缩,不压缩注释,提取公共样式
@@ -38,6 +39,8 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 ## 这个项目修改的大致内容
 
 *	修改成多页面模式
+*	默认全局注入jquery
+*	添加html-loader解析html图片路径
 *	取消build生产map
 *	删除css压缩时的注释代码
 *	删除js压缩时的注释代码
@@ -52,9 +55,11 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 
 > vendor.js需要被多个页面引入才会产生，不影响实际开发,反而减少了一次http请求(好事)
 
+> html里的css不会添加前缀
 ## 注意
 * 代码内含大量冗余无用的注释，自行判断
 * css-loader 不能类似解析url('data:image/svg+xml;charset=utf-8,<svg...')的css语法,改为url('data:image/svg+xml;base64,PHN2Zw...')
 * export-loader N个月没更新,不支持export和module.exports选择，而import和module.exports混用会报错
 所以我fork了个export-loader,添加了2个参数 详情<https://https://github.com/xxssww0258/exports-loader/>
+* `exporse-loader` 和` webpack.ProvidePlugin`不会为node_modules里的js注入全局变量,需手动复制再导入
 * 估计还有许多loader存在问题

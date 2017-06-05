@@ -50,13 +50,21 @@ module.exports = {
         limit: 10000,
         name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
       }
+    },{
+    	test:/\.html$/,
+    	loader:'html-loader'
     }]
   },
-  // plugins: [
-  //   new webpack.ProvidePlugin({//全局变量插件
-  //     mui: '@/lib/mui/mui.js',
-  //   })
-  // ],
+     plugins: [
+       new webpack.ProvidePlugin({//全局变量插件
+//当webpack加载到某个js模块里，出现了未定义且名称符合（字符串完全匹配）配置中key的变量时，会自动require配置中value所指定的js模块。
+//不能为node_modules里的js注入
+         $: 'jquery',
+         jQuery:'jquery',
+         'window.jQuery':'jquery',
+         'window.$': 'jquery',
+       })
+     ],
   // externals: {
   //     mui: "@/lib/mui/mui.js"
   // },
