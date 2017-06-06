@@ -39,27 +39,28 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 ## 这个项目修改的大致内容
 
 *	修改成多页面模式
-*	默认全局注入jquery
+*	添加插件默认全局注入jquery
 *	添加html-loader解析html图片路径
 *	取消build生产map
 *	删除css压缩时的注释代码
 *	删除js压缩时的注释代码
 *	添加自动补前缀（原本只补.vue）
 *	添加common.js存放公共 js(vendor.js是存放长期不修改的)
-*	默认新增依赖less,sass,stylus,postcss,html,autoprefixer,imports,exports,expose,json
+*	默认新增依赖less-loader,less,sass,stylus,postcss,html,autoprefixer,imports,exports,expose,json
 *	还有webpack-spritesmith，但是没有做处理，暂时不可用，如果以后想要兼容ie7才会进行修改
 *	还有一堆我忘记了的修改。。。
 
 ## 已知BUG
-> 某些情况下导入字体路径会错误(需手动修改，进入build后的css文件搜索后缀如ttf)
+> 某些情况下导入字体路径会错误(需手动修改，进入build后的css文件搜索后缀如ttf)--添加html-loader后好像已经解决
 
 > vendor.js需要被多个页面引入才会产生，不影响实际开发,反而减少了一次http请求(好事)
 
-> html里的css不会添加前缀
 ## 注意
 * 代码内含大量冗余无用的注释，自行判断
+* html里的style.css不会添加前缀
 * css-loader 不能类似解析url('data:image/svg+xml;charset=utf-8,<svg...')的css语法,改为url('data:image/svg+xml;base64,PHN2Zw...')
 * export-loader N个月没更新,不支持export和module.exports选择，而import和module.exports混用会报错
 所以我fork了个export-loader,添加了2个参数 详情<https://https://github.com/xxssww0258/exports-loader/>
 * `exporse-loader` 和` webpack.ProvidePlugin`不会为node_modules里的js注入全局变量,需手动复制再导入
+* less-loader 还要安装less `npm install --save-dev less-loader less`
 * 估计还有许多loader存在问题

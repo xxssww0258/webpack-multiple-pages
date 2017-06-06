@@ -25,6 +25,14 @@ exports.cssLoaders = function (options) {//options是loader的选项配置
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {//生成loader
     var loaders = [cssLoader] // 默认是css-loader
+    
+		if(options.isRules){//如果是从webpack.prod.conf调用的话
+    //自定义全部(css,less,sass,stylus,postcss)注入postcss-loader补全前缀
+      loaders.push({
+        loader: 'postcss-loader',
+        options:{ plugins: (loader) => [ require('autoprefixer')()]}
+      });
+   }   
     if (loader) {// 如果有参数，则插入[参数1-loader]和[options:{参数2}],但只能插入1个
       loaders.push({//这里的loader是给ExtractTextPlugin.extract(use:)注入的必须的loader--默认注入本身如less注入less-loader
         loader: loader + '-loader',//loader:css-loader
@@ -34,13 +42,7 @@ exports.cssLoaders = function (options) {//options是loader的选项配置
       });
     }
 
-    if(options.isRules){//如果是从webpack.prod.conf调用的话
-    //自定义全部(css,less,sass,stylus,postcss)注入postcss-loader补全前缀
-      loaders.push({
-        loader: 'postcss-loader',
-        options:{ plugins: (loader) => [ require('autoprefixer')()]}
-      });
-    }
+
 
     // 在指定选项时提取CSS
     // 如果是生成环境的话
