@@ -5,7 +5,7 @@ var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 
 
-
+vueLoaderConfig.transformToRequire=config.multiplePage.dateUrl;//.vue-loader添加解析src,data-src加载路径
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }

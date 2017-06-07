@@ -41,12 +41,13 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 *	修改成多页面模式
 *	添加插件默认全局注入jquery
 *	添加html-loader解析html图片路径
+*	添加.vue解析data-src(默认只解析src)
 *	取消build生产map
 *	删除css压缩时的注释代码
 *	删除js压缩时的注释代码
 *	添加自动补前缀（原本只补.vue）
 *	添加common.js存放公共 js(vendor.js是存放长期不修改的)
-*	默认新增依赖less-loader,less,sass,stylus,postcss,html,autoprefixer,imports,exports,expose,json
+*	默认新增依赖less-loader,less,sass,stylus,postcss,html,autoprefixer,imports,exports,expose
 *	还有webpack-spritesmith，但是没有做处理，暂时不可用，如果以后想要兼容ie7才会进行修改
 *	还有一堆我忘记了的修改。。。
 
@@ -63,4 +64,6 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 所以我fork了个export-loader,添加了2个参数 详情<https://https://github.com/xxssww0258/exports-loader/>
 * `exporse-loader` 和` webpack.ProvidePlugin`不会为node_modules里的js注入全局变量,需手动复制再导入
 * less-loader 还要安装less `npm install --save-dev less-loader less`
+* webpack2.0自动添加json-loader
+* .vue文件都由vue-loader处理 例如html-loader不会解析.vue里面的src
 * 估计还有许多loader存在问题
