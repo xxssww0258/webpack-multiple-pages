@@ -51,6 +51,45 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 *	还有webpack-spritesmith，但是没有做处理，暂时不可用，如果以后想要兼容ie7才会进行修改
 *	还有一堆我忘记了的修改。。。
 
+### 兼容情况下
+>  兼容情况下只能使用amd规范的require,无法使用 import 和 export
+
+*  默认引入 es3ify-webpack-plugin(es3保留字兼容,es3属性保留字兼容,default兼容)
+*  需要手动给模板.html添加<pre><code>
+	<!--[if lt IE 9]>
+		<script src="https://cdn.bootcss.com/es5-shim/4.5.9/es5-shim.min.js"></script>//给es3环境添加es5 API
+		<script src="https://cdn.bootcss.com/es5-shim/4.5.9/es5-sham.min.js"></script>//给es3环境添加es5 API2
+		<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>//识别标签
+		<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>//媒体查询
+    <![endif]-->
+</code></pre>
+*  or手动`require('es5-shim')` es5api
+*  手动`require('es5-shim/es5-sham')` es5api加强包
+*  手动`require('console-polyfill')` 估计是console的es6api
+*  手动`import "babel-polyfill"` es6api
+*  promise和fetch 需要   fetch-ie8 和require('es6-promise');//Promise 兼容 (babel-polyfill好像已经兼容了promise)
+*  Object.assgin 需要使用 core.js
+*  已经优化修改UglifyJsPlugin
+<pre><code>
+new webpack.optimize.UglifyJsPlugin({//uglify-js问题
+    compress: {
+        properties: false,
+        warnings: false
+    },
+    output: {
+        beautify: true,//这条本人测试发现可以取消,但是原兼容博主在博文中说道会 把引号被压缩掉
+        quote_keys: true
+    },
+    mangle: {
+        screw_ie8: false
+    },
+    sourceMap: false
+})
+</code></pre>
+1. `es3ify-webpack-plugin` == `es3ify-loader` == `transform-es3-property-literal`s + `babel-plugin-transform-es3-member-expression-literals` + `babel-plugin-add-module-exports`
+2. `transform-es3-property-literals`// 保留字兼容
+3. `babel-plugin-transform-es3-member-expression-literals`//保留字属性兼容
+4. `babel-plugin-add-module-exports`//default字兼容
 ## 已知BUG
 > 某些情况下导入字体路径会错误(需手动修改，进入build后的css文件搜索后缀如ttf)--添加html-loader后好像已经解决
 
@@ -66,4 +105,8 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 * less-loader 还要安装less `npm install --save-dev less-loader less`
 * webpack2.0自动添加json-loader
 * .vue文件都由vue-loader处理 例如html-loader不会解析.vue里面的src
+* Babel默认只转换新的JavaScript句法（syntax），而不转换新的API，比如Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象，以及一些定义在全局对象上的方法（比如Object.assign）都不会转码。必须使用babel-polyfill
+
+>需要兼容的情况es3环境中需手动导入es5的api:`es5-shim`,`es5-sham`或es6api,在es5环境中需手动导入es6环境：`babel-polyfill`,`console-polyfill`
+
 * 估计还有许多loader存在问题

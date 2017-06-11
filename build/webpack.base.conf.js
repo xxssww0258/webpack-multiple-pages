@@ -1,8 +1,9 @@
-var path = require('path')
-var utils = require('./utils')
-var webpack = require('webpack')
-var config = require('../config')
-var vueLoaderConfig = require('./vue-loader.conf')
+var path = require('path')//node的路径工具
+var utils = require('./utils')//vue-cli的小方法
+var webpack = require('webpack')//webpack
+var config = require('../config')//项目总配置文件
+var vueLoaderConfig = require('./vue-loader.conf')//vue-loader的配置文件
+var es3ifyWebpackPlugin=require('es3ify-webpack-plugin');//ie8兼容保留字插件
 
 
 vueLoaderConfig.transformToRequire=config.multiplePage.dateUrl;//.vue-loader添加解析src,data-src加载路径
@@ -63,7 +64,8 @@ module.exports = {
          jQuery:'jquery',
          'window.jQuery':'jquery',
          'window.$': 'jquery',
-       })
+       }),
+       new es3ifyWebpackPlugin(),//ie8兼容插件
      ],
   // externals: {
   //     mui: "@/lib/mui/mui.js"

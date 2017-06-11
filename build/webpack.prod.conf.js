@@ -55,12 +55,20 @@ var webpackConfig = merge(baseWebpackConfig, {
       'process.env': env
     }),
     //压缩 js (也可以压缩css,但是这里是用css-loader压缩)
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      sourceMap: true,
-      comments:config.multiplePage.isComments
+    new webpack.optimize.UglifyJsPlugin({//是否兼容ie8的压缩模式
+			compress: {
+				warnings: false, //危险警告压缩,估计是取消报错
+				properties: !config.multiplePage.isES3, //false,兼容ie8,a["foo"] → a.foo
+			},
+			output: {
+				beautify: false, //这条本人测试发现可以取消,但是原兼容博主在博文中说道会 把引号被压缩掉
+				quote_keys: config.multiplePage.isES3, //true,兼容ie8,应该是保留引用key
+			},
+			mangle:{
+				screw_ie8: !config.multiplePage.isES3,//false,兼容ie8,取消兼容ie8
+			},
+			sourceMap: true,
+			comments: config.multiplePage.isComments
     }),
     // 每一个用到了require("style.css")的entry chunks文件中抽离出css到单独的output文件
     new ExtractTextPlugin({//需要配合上面自动生成的loader的参数

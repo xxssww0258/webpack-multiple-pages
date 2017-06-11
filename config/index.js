@@ -39,6 +39,7 @@ module.exports = {
     isMultiple:true,//是否使用多页面模式(否的话为默认vue-cli的模式)
     isAutoEntry:true,//是否自动导入 公共JS和入口文件JS
     isComments:true,//是否删除JS和css注释
+    isES3:true,//是否兼容ie8,还需手动require(es5-shim,es-sham,babel-polyfill,console-polyfill)
     dateUrl:{'img':['src','data-src']},//.vue-loader解析date-src的路径 img是标签，解析img中src和data-src
     entryPath:path.resolve(__dirname, '../src/module/**/index.js'),//多页面的入口文件位置,要求入口文件和html同名为index
     htmlPath:path.resolve(__dirname, '../src/module/**/index.html')//多页面的模板文件位置,要求入口文件和html同名为index
