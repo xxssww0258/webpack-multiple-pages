@@ -1,5 +1,5 @@
 # webpack-multiple-pages
-根据 vue-cli 修改的多页面，不一定vue才能用，其他框架也能用
+根据 vue-cli 修改的多页面，不一定vue才能用，其他框架也能用,IE8兼容处理
 
 ## 参考
 *	<https://github.com/Aka-xXx/vue-multi-page/>
@@ -21,6 +21,7 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 
 	npm run build
 	npm run dev
+	需要从https://github.com/xxssww0258/exports-loader.git覆盖node_modules里的exports-loader
 ## 介绍vue-cli npm run build做的事情
 
 > 欢迎补充
@@ -39,6 +40,7 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 ## 这个项目修改的大致内容
 
 *	修改成多页面模式
+*   兼容ie8处理(默认兼容)
 *	添加插件默认全局注入jquery
 *	添加html-loader解析html图片路径
 *	添加.vue解析data-src(默认只解析src)
@@ -48,7 +50,6 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 *	添加自动补前缀（原本只补.vue）
 *	添加common.js存放公共 js(vendor.js是存放长期不修改的)
 *	默认新增依赖less-loader,less,sass,stylus,postcss,html,autoprefixer,imports,exports,expose
-*	还有webpack-spritesmith，但是没有做处理，暂时不可用，如果以后想要兼容ie7才会进行修改
 *	还有一堆我忘记了的修改。。。
 
 ### 兼容情况下
@@ -109,4 +110,5 @@ new webpack.optimize.UglifyJsPlugin({//uglify-js问题
 
 >需要兼容的情况es3环境中需手动导入es5的api:`es5-shim`,`es5-sham`或es6api,在es5环境中需手动导入es6环境：`babel-polyfill`,`console-polyfill`
 
+* 为了解决extract-text-webpack-plugin CSS重复问题vue-cli压缩了2次css代码，build时间较长
 * 估计还有许多loader存在问题

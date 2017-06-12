@@ -1,6 +1,6 @@
-require('./check-versions')()
+require('./check-versions')()//检测版本
 
-process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'production'//设置当前环境为生产环境
 
 var ora = require('ora')
 var rm = require('rimraf')

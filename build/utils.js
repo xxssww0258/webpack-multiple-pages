@@ -1,7 +1,7 @@
-var path = require('path')
-var glob = require('glob')
-var config = require('../config')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var path = require('path')//node的路径工具
+var glob = require('glob')//node的glob
+var config = require('../config')//webpack项目控制文件
+var ExtractTextPlugin = require('extract-text-webpack-plugin')//从js中抽离css插件
 
 exports.assetsPath = function (_path) {
   var assetsSubDirectory = process.env.NODE_ENV === 'production'
