@@ -33,7 +33,7 @@ module.exports = {//webpack项目配置文件出口
       loader: 'vue-loader',//.vue文件的处理
       options: vueLoaderConfig
     }, {
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loader: 'babel-loader',//babel转换，配置文件在根目录的.babelrc
       include: [resolve('src'), resolve('test')]
     }, {

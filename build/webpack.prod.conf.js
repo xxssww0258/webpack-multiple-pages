@@ -139,7 +139,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   ]
 })
 
-if (config.build.productionGzip) { //配置文件开启了gzip压缩
+if (config.build.productionGzip) { //判断配置文件开启了gzip压缩
   var CompressionWebpackPlugin = require('compression-webpack-plugin')//引入压缩文件的组件,该插件会对生成的文件进行压缩，生成一个.gz文件
 
   webpackConfig.plugins.push(

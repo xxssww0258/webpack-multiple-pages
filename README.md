@@ -41,6 +41,11 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 
 *	修改成多页面模式
 *   兼容ie8处理(默认兼容)
+*   默认统一babel转commonjs规范(自动import 转require解决webpack打包ie8下报错)
+
+>	不做兼容可以去`.babelrc`删掉`transform-es2015-modules-commonjs`
+
+*	修改babel-loader正则兼容jax语法为/\.jsx?$/
 *	添加插件默认全局注入jquery
 *	添加html-loader解析html图片路径
 *	添加.vue解析data-src(默认只解析src)
@@ -49,11 +54,11 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 *	删除js压缩时的注释代码
 *	添加自动补前缀（原本只补.vue）
 *	添加common.js存放公共 js(vendor.js是存放长期不修改的)
-*	默认新增依赖less-loader,less,sass,stylus,postcss,html,autoprefixer,imports,exports,expose
+*	默认新增依赖less-loader,less,sass,stylus,postcss,html,autoprefixer,imports,exports,expose,transform-es2015-modules-commonjs
 *	还有一堆我忘记了的修改。。。
 
 ### 兼容情况下
->  兼容情况下只能使用amd规范的require,无法使用 import 和 export
+>  兼容情况下只能使用amd规范的require,无法使用 import 和 export,所以上面使用了babel转换规范为commonjs
 
 *  默认引入 es3ify-webpack-plugin(es3保留字兼容,es3属性保留字兼容,default兼容)
 *  需要手动给模板.html添加<pre><code>
