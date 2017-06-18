@@ -54,7 +54,7 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 *	删除js压缩时的注释代码
 *	添加自动补前缀（原本只补.vue）
 *	添加common.js存放公共 js(vendor.js是存放长期不修改的)
-*	默认新增依赖less-loader,less,sass,stylus,postcss,html,autoprefixer,imports,exports,expose,transform-es2015-modules-commonjs
+*	默认新增依赖`less-loader` `less,sass` `stylus` `postcss-loader` `html-loader` `autoprefixer` `imports-loader` `exports-loader` `expose-loader` `transform-es2015-modules-commonjs` `es5-shim` `console-polyfill` `babel-polyfill` `es3ify-webpack-plugin`
 *	还有一堆我忘记了的修改。。。
 
 ### 兼容情况下
@@ -72,10 +72,10 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 *  or手动`require('es5-shim')` es5api
 *  手动`require('es5-shim/es5-sham')` es5api加强包
 *  手动`require('console-polyfill')` 估计是console的es6api
-*  手动`import "babel-polyfill"` es6api
-*  promise和fetch 需要   fetch-ie8 和require('es6-promise');//Promise 兼容 (babel-polyfill好像已经兼容了promise)
-*  Object.assgin 需要使用 core.js
-*  已经优化修改UglifyJsPlugin
+*  手动`import "babel-polyfill"` es6api=core.js + regenerator runtime 
+	*  promise和fetch 需要   fetch-ie8 和require('es6-promise');//Promise 兼容 (babel-polyfill好像已经兼容了promise)
+	*  Object.assgin 需要使用 core.js //建议不用Object.assgin()和Object.is()
+*  优化修改UglifyJsPlugin,不会报错
 <pre><code>
 new webpack.optimize.UglifyJsPlugin({//uglify-js问题
     compress: {
@@ -92,7 +92,7 @@ new webpack.optimize.UglifyJsPlugin({//uglify-js问题
     sourceMap: false
 })
 </code></pre>
-1. `es3ify-webpack-plugin` == `es3ify-loader` == `transform-es3-property-literal`s + `babel-plugin-transform-es3-member-expression-literals` + `babel-plugin-add-module-exports`
+1. `es3ify-webpack-plugin` == `es3ify-loader` == `transform-es3-property-literals` + `babel-plugin-transform-es3-member-expression-literals` + `babel-plugin-add-module-exports`
 2. `transform-es3-property-literals`// 保留字兼容
 3. `babel-plugin-transform-es3-member-expression-literals`//保留字属性兼容
 4. `babel-plugin-add-module-exports`//default字兼容

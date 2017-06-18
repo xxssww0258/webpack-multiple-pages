@@ -26,7 +26,8 @@ var compiler = webpack(webpackConfig)
 //webpack内存搭建项目的插件
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
-  quiet: true
+  quiet: true,
+//historyApiFallback:true,
 })
 //实现浏览器的无刷新更新（hot reload）
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {

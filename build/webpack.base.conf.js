@@ -15,9 +15,9 @@ module.exports = {//webpack项目配置文件出口
     app: './src/main.js'//默认单页时的入口文件,在多页面下无作为
   },
   output: {
-    path: config.build.assetsRoot,
+    path: config.build.assetsRoot,//用来存放打包后文件的输出目录 
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
+    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath//指定资源文件引用的目录 
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],//忽略后缀
