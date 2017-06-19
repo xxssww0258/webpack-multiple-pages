@@ -30,7 +30,7 @@ exports.cssLoaders = function (options) {//options是loader的选项配置
     //自定义全部(css,less,sass,stylus,postcss)注入postcss-loader补全前缀
       loaders.push({
         loader: 'postcss-loader',
-        options:{ plugins: (loader) => [ require('autoprefixer')()]}
+        // options:{ plugins: (loader) => [ require('autoprefixer')()]},不需要这条,会自动读取.postcssrc.js
       });
    }   
     if (loader) {// 如果有参数，则插入[参数1-loader]和[options:{参数2}],但只能插入1个
