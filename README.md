@@ -54,7 +54,7 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 *	删除js压缩时的注释代码
 *	添加自动补前缀（原本只补.vue）
 *	添加common.js存放公共 js(vendor.js是存放长期不修改的)
-*	默认新增依赖`less-loader` `less,sass` `stylus` `postcss-loader` `html-loader` `autoprefixer` `imports-loader` `exports-loader` `expose-loader` `transform-es2015-modules-commonjs` `es5-shim` `console-polyfill` `babel-polyfill` `es3ify-webpack-plugin`
+*	默认新增依赖`less-loader` `less` `sass-loader` `node-sass` `stylus` `postcss-loader` `html-loader` `autoprefixer` `imports-loader` `exports-loader` `expose-loader` `transform-es2015-modules-commonjs` `es5-shim` `console-polyfill` `babel-polyfill` `es3ify-webpack-plugin`
 *	还有一堆我忘记了的修改。。。
 
 ### 兼容情况下
