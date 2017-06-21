@@ -1,5 +1,6 @@
 # webpack-multiple-pages
-根据 vue-cli 修改的多页面，不一定vue才能用，其他框架也能用,IE8兼容处理
+根据 vue-cli 修改的多页面，不一定vue才能用，其他框架也能用,IE8兼容处理   
+不建议用来搭建react,后面有空之后再更新重构
 
 ## 参考
 *	<https://github.com/Aka-xXx/vue-multi-page/>
@@ -61,14 +62,15 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 >  兼容情况下只能使用amd规范的require,无法使用 import 和 export,所以上面使用了babel转换规范为commonjs
 
 *  默认引入 es3ify-webpack-plugin(es3保留字兼容,es3属性保留字兼容,default兼容)
-*  需要手动给模板.html添加<pre><code>
+*  需要手动给模板.html添加
+```
 	<!--[if lt IE 9]>
 		<script src="https://cdn.bootcss.com/es5-shim/4.5.9/es5-shim.min.js"></script>//给es3环境添加es5 API
 		<script src="https://cdn.bootcss.com/es5-shim/4.5.9/es5-sham.min.js"></script>//给es3环境添加es5 API2
 		<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>//识别标签
 		<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>//媒体查询
     <![endif]-->
-</code></pre>
+```
 *  or手动`require('es5-shim')` es5api
 *  手动`require('es5-shim/es5-sham')` es5api加强包
 *  手动`require('console-polyfill')` 估计是console的es6api
@@ -100,6 +102,8 @@ new webpack.optimize.UglifyJsPlugin({//uglify-js问题
 > 某些情况下导入字体路径会错误(需手动修改，进入build后的css文件搜索后缀如ttf)--添加html-loader后好像已经解决
 
 > vendor.js需要被多个页面引入才会产生，不影响实际开发,反而减少了一次http请求(好事)
+
+> node.js经常内存溢出,需要从新`npm run dev`估计是某个东西没配置好,以后再解决
 
 ## 注意
 * 代码内含大量冗余无用的注释，自行判断
