@@ -64,12 +64,12 @@ e.g.  在module/创建模块.e.g:module/index[这是模块名]/index.html[默认
 *  默认引入 es3ify-webpack-plugin(es3保留字兼容,es3属性保留字兼容,default兼容)
 *  需要手动给模板.html添加
 ```
-	<!--[if lt IE 9]>
+	《!--[if lt IE 9]>
 		<script src="https://cdn.bootcss.com/es5-shim/4.5.9/es5-shim.min.js"></script>//给es3环境添加es5 API
 		<script src="https://cdn.bootcss.com/es5-shim/4.5.9/es5-sham.min.js"></script>//给es3环境添加es5 API2
 		<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>//识别标签
 		<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>//媒体查询
-    <![endif]-->
+    <![endif]--》
 ```
 *  or手动`require('es5-shim')` es5api
 *  手动`require('es5-shim/es5-sham')` es5api加强包
