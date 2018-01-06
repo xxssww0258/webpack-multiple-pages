@@ -91,7 +91,7 @@ new webpack.optimize.UglifyJsPlugin({//uglify-js问题
     mangle: {
         screw_ie8: false
     },
-    sourceMap: false
+    sourceMap: false //es3ify某些情况下会报错,可以先改为true
 })
 </code></pre>
 1. `es3ify-webpack-plugin` == `es3ify-loader` == `transform-es3-property-literals` + `babel-plugin-transform-es3-member-expression-literals` + `babel-plugin-add-module-exports`
